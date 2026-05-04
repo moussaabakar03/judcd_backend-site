@@ -12,6 +12,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
+
 class Newsletter(models.Model):
     email = models.EmailField(unique=True)
 
@@ -50,7 +51,7 @@ class Temoignage(models.Model):
     nom = models.CharField(max_length=100)
     titre = models.CharField(max_length=200)
     message = models.TextField()
-    photo = models.ImageField(upload_to='temoignages/')
+    photo = models.ImageField(upload_to='temoignages/', blank=True, null=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -60,7 +61,7 @@ class Temoignage(models.Model):
 class Membre_Equipe(models.Model):
     nom_complet = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='equipe/')
+    photo = models.ImageField(upload_to='equipe/', blank=True, null=True)
     telephone = models.CharField(max_length=20)
     email = models.EmailField()
     reseaux_sociaux = models.JSONField()  # Ex: {"linkedin": "url", "twitter": "url"}
@@ -69,6 +70,8 @@ class Membre_Equipe(models.Model):
     def __str__(self):
         return f"{self.nom_complet} - {self.role}"
     
+
+    
 class Type_Action(models.Model):
     nom = models.CharField(max_length=100)
 
@@ -76,11 +79,10 @@ class Type_Action(models.Model):
         return self.nom
 
 class Galerie_Action(models.Model):
-    image = models.ImageField(upload_to='galerie/')
+    image = models.ImageField(upload_to='galerie/', blank=True, null=True)
 
     def __str__(self):
         return f"Image {self.id}"
-
 
 class Action(models.Model):
     titre = models.CharField(max_length=200)
@@ -88,12 +90,13 @@ class Action(models.Model):
     date = models.DateField()
     lieu = models.CharField(max_length=200)
     type_action = models.ForeignKey(Type_Action, on_delete=models.CASCADE)
-    image_couverture = models.ImageField(upload_to='actions/')
+    image_couverture = models.ImageField(upload_to='actions/', blank=True, null=True)
     galerie = models.ManyToManyField(Galerie_Action, blank=True)
 
 
     def __str__(self):
         return self.titre
+
 
 class Type_Actualite(models.Model):
     nom = models.CharField(max_length=100)
