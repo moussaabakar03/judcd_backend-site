@@ -17,6 +17,15 @@ router.register(r'action', ActionViewSet, basename='action')
 router.register(r'type-actualite', TypeActualiteViewSet, basename='type-actualite')
 
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+
+    path('login/', TokenObtainPairView.as_view()),
+    path('refresh/', TokenRefreshView.as_view()),
+
 ]
