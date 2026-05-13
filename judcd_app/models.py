@@ -80,6 +80,10 @@ class Type_Action(models.Model):
 
 class Galerie_Action(models.Model):
     image = models.ImageField(upload_to='galerie/', blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    category = models.CharField(max_length=100, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Image {self.id}"
