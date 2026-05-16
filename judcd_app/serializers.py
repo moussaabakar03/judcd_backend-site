@@ -1,13 +1,15 @@
 from rest_framework import serializers
-from judcd_app.models import *
+from .models import Contact, Newsletter, Type_Partenaire, Partenaire, Don, Temoignage, Membre_Equipe, Type_Action, Galerie_Action, Action, Type_Actualite
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
-    
-class NewsletterSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+
+class NewsletterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Newsletter
+        fields = '__all__'
 
 class TypePartenaireSerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,7 +41,7 @@ class TypeActionSerializer(serializers.ModelSerializer):
         model = Type_Action
         fields = '__all__'
 
-class GalarieActionSerializer(serializers.ModelSerializer):
+class GalerieActionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Galerie_Action
         fields = '__all__'
